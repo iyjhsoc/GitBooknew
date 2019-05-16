@@ -1,12 +1,12 @@
 ## 2.4方法注入
 
-   目的：解决bean协作时由于生命周期不同引起的问题
+目的：解决bean协作时由于生命周期不同引起的问题
 
-   方法：实现接口 ApplicationContextAware
+方法：实现接口 ApplicationContextAware
 
-   效果：每次bean A需要时都要求（通常是新的）bean B实例。
+效果：每次bean A需要时都要求（通常是新的）bean B实例。
 
-**下方法不可取因为该方法耦合**pring Framework
+**下方法不可取因为该方法耦合spring Framework**
 
 ```java
 // a class that uses a stateful Command-style class to perform some processing
@@ -39,6 +39,8 @@ public class CommandManager implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 ```
+
+### 方法注入
 
 
 
