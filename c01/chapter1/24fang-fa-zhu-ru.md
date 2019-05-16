@@ -48,9 +48,7 @@ public class CommandManager implements ApplicationContextAware {
 <public|protected> [abstract] <return-type> theMethodName(no-arguments);
 ```
 
-bean:
-
-
+bean方法注入:
 
 ```
 package fiona.apple;
@@ -87,6 +85,51 @@ public abstract class CommandManager {
 ```
 
 #### 任意方法更换
+
+比一种不太有用的方法注入形式
+
+```
+public class MyValueCalculator {
+
+    public String computeValue(String input) {
+        // some real code...
+    }
+
+    // some other methods...
+
+}
+```
+
+实现org.springframework.beans.factory.support.MethodReplacer 接口的类提供新的方法定义。
+
+```
+/**
+ * meant to be used to override the existing computeValue(String)
+ * implementation in MyValueCalculator
+ */
+public class ReplacementComputeValue implements MethodReplacer {
+
+    public Object reimplement(Object o, Method m, Object[] args) throws Throwable {
+        // get the input value, work with it, and return a computed result
+        String input = (String) args[0];
+        ...
+        return ...;
+    }
+}
+```
+
+部署原始类并指定方法覆盖的bean定义如下所示：
+
+```
+<bean id="myValueCalculator" class="x.y.z.MyValueCalculator">
+    <!-- arbitrary method replacement -->
+    <replaced-method name="computeValue" replacer="replacementComputeValue">
+        <arg-type>String</arg-type>
+    </replaced-method>
+</bean>
+
+<bean id="replacementComputeValue" class="a.b.c.ReplacementComputeValue"/>
+```
 
 
 
