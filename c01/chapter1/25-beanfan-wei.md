@@ -12,7 +12,11 @@
 
 ### 2.5.1 单例范围
 
+使用场景：对无状态bean使用单例范围
+
 效果：当您定义bean并将其作为单一作用域时，Spring IoC容器只创建该bean定义的对象的一个实例。此单个实例存储在此类单例bean的缓存中，并且该命名Bean的所有后续请求和引用都将返回缓存对象。
+
+**Figure 2.5.1**
 
 ![](/assets/2_5_1.PNG)
 
@@ -23,5 +27,7 @@
 <bean id="accountService" class="com.foo.DefaultAccountService" scope="singleton"/>
 ```
 
+### 2.5.2 原型Bean
 
+使用场景：对所有状态的bean使用原型范围，对无状态bean使用单例范围。
 
