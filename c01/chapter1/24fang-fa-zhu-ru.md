@@ -9,7 +9,7 @@
 格式：
 
 ```
-<public|protected> [abstract] <return-type> theMethodName(no-arguments);
+
 ```
 
 **下方法不可取因为该方法耦合spring Framework**
@@ -49,6 +49,10 @@ public class CommandManager implements ApplicationContextAware {
 ### 方法注入
 
 ```
+<public|protected> [abstract] <return-type> theMethodName(no-arguments);
+```
+
+```
 package fiona.apple;
 
 // no more Spring imports!
@@ -68,7 +72,7 @@ public abstract class CommandManager {
 }
 ```
 
-生成的bean:
+生成的bean 使用abstract:
 
 ```XML
 <!-- a stateful bean deployed as a prototype (non-singleton) -->
