@@ -1,7 +1,7 @@
 # Summary
 
-* [Spring](README.md)
-  * [a](a.md)
+* [1. spring](README.md)
+  * [spring配置](a.md)
 * [First Chapter](chapter1.md)
 * [xiecong](xiecong.md)
 
