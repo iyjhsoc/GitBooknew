@@ -1,5 +1,7 @@
 ## 2.4 依赖
 
+#### 2.4.1方法注入
+
 目的：解决bean协作时由于生命周期不同引起的问题
 
 方法：实现接口 ApplicationContextAware
@@ -84,7 +86,7 @@ public abstract class CommandManager {
 </bean>
 ```
 
-#### 任意方法更换
+### 2.4.2 任意方法更换
 
 比一种不太有用的方法注入形式
 

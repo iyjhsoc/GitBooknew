@@ -6,4 +6,5 @@
 * [2. spring IOC](c01\chapter1.md)
   * [dasda](c01/chapter1/dasda.md)
   * [2.4 依赖](c01/chapter1/24fang-fa-zhu-ru.md)
+  * [2.5 Bean范围](c01/chapter1/25-beanfan-wei.md)
 
