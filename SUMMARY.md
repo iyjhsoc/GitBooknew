@@ -5,5 +5,5 @@
   * [spring配置](a.md)
 * [2. spring IOC](c01\chapter1.md)
   * [dasda](c01/chapter1/dasda.md)
-  * [2.4 方法注入](c01/chapter1/24fang-fa-zhu-ru.md)
+  * [2.4 依赖](c01/chapter1/24fang-fa-zhu-ru.md)
 
