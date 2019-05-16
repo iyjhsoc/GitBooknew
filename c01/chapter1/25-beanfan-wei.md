@@ -12,11 +12,13 @@
 
 ### 2.5.1 单例范围
 
+![](/assets/2_5_1.PNG)
+
 ```
 <bean id="accountService" class="com.foo.DefaultAccountService"/>
 
 <!-- the following is equivalent, though redundant (singleton scope is the default) -->
-<bean id="accountService" class="com.foo.DefaultAccountService" scope="singleton"/> 
+<bean id="accountService" class="com.foo.DefaultAccountService" scope="singleton"/>
 ```
 
 
