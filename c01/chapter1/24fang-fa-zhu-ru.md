@@ -6,12 +6,6 @@
 
 效果：每次bean A需要时都要求（通常是新的）bean B实例。
 
-格式：
-
-```
-
-```
-
 **下方法不可取因为该方法耦合spring Framework**
 
 ```java
@@ -48,9 +42,15 @@ public class CommandManager implements ApplicationContextAware {
 
 ### 方法注入
 
+格式：
+
 ```
 <public|protected> [abstract] <return-type> theMethodName(no-arguments);
 ```
+
+bean:
+
+
 
 ```
 package fiona.apple;
