@@ -373,5 +373,53 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 </bean>
 ```
 
+#### 在非Web应用程序中正常关闭Spring IoC容器
+
+原理：在富客户端桌面环境中; 您在JVM上注册了一个关闭钩子。
+
+实现：要注册关闭挂钩，请调用registerShutdownHook\(\)在AbstractApplicationContext类上声明的方法：
+
+```
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public final class Boot {
+
+    public static void main(final String[] args) throws Exception {
+
+        AbstractApplicationContext ctx = new ClassPathXmlApplicationContext(
+                new String []{"beans.xml"});
+
+        // add a shutdown hook for the above context...
+        ctx.registerShutdownHook();
+
+        // app runs here...
+
+        // main method exits, hook is called prior to the app shutting down...
+
+    }
+}
+```
+
+#### 2.5.6.2 ApplicationContextAware和BeanNameAware
+
+当ApplicationContext创建实现org.springframework.context.ApplicationContextAware接口的类时，将为该类提供对该 接口的引用ApplicationContext。
+
+作用：增强ApplicationContext的功能
+
+缺点：不符合IOC规范和造成代码与Spring耦合
+
+```
+public interface ApplicationContextAware {
+
+    void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
+
+}
+```
+
+#### 2.5.6.3 其他Aware接口
+
+![](/assets/Aware interfaces.PNG)
+
 
 
