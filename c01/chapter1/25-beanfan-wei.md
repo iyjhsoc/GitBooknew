@@ -342,5 +342,29 @@ public interface LifecycleProcessor extends Lifecycle {
 }
 ```
 
+场景：两个对象之间存在依赖关系
+
+解决的问题： 两个对象的启动和停止顺序是很重要的
+
+启动时，具有最低相位的对象首先开始，停止时，遵循相反的顺序。因此，实现SmartLifecycle和getPhase（）方法返回的对象Integer.MIN\_VALUE将是第一个开始和最后一个停止的对象。
+
+```
+public interface Phased {
+
+    int getPhase();
+
+}
+```
+
+```
+public interface SmartLifecycle extends Lifecycle, Phased {
+
+    boolean isAutoStartup();
+
+    void stop(Runnable callback);
+
+}
+```
+
 
 
