@@ -314,5 +314,21 @@ public class DefaultBlogService implements BlogService {
 </beans>
 ```
 
+#### 启动和关闭回调
+
+该Lifecycle接口为具有自己的生命周期要求的任何对象定义了基本方法：
+
+```
+public interface Lifecycle {
+
+    void start();
+
+    void stop();
+
+    boolean isRunning();
+
+}
+```
+
 
 
