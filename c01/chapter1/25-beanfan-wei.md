@@ -122,11 +122,15 @@ request Scope 作用域注入另一个,Bean测必须注入AOP代理来替换作�
 
 ###### 创建代理类：将子&lt;aop:scoped-proxy/&gt;元素插入到作用域bean定义中。
 
-                       创建的代理类是基于CGLIB的类代理
+```
+                   创建的代理类是基于CGLIB的类代理
+```
 
 场景：1. bean类的定义范围的在request,session,global session和自定义范围水平要求&lt;aop:scoped-proxy/&gt;元素。
 
-            2.当将一个生命周期短的注入一个生命周期长的bean时
+```
+        2.当将一个生命周期短的注入一个生命周期长的bean时
+```
 
 ```
 <bean id="userPreferences" class="com.foo.UserPreferences" scope="session">
@@ -157,10 +161,44 @@ Object remove(String name)
 void registerDestructionCallback(String name, Runnable destructionCallback)
 ```
 
-获取基础范围的对话标识符：。每个范围的标识符都不同。对于会话范围的实现，该标识符可以是会话标识符。
+获取基础范围的对话标识符：每个范围的标识符都不同。对于会话范围的实现，该标识符可以是会话标识符。
 
 ```
 String getConversationId()
+```
+
+使用自定义Scope实现，您不仅限于范围的编程注册。您还可以Scope使用以下CustomScopeConfigurer类以声明方式进行注册 ：
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="thread">
+                    <bean class="org.springframework.context.support.SimpleThreadScope"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="bar" class="x.y.Bar" scope="thread">
+        <property name="name" value="Rick"/>
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="foo" class="x.y.Foo">
+        <property name="bar" ref="bar"/>
+    </bean>
+
+</beans>
 ```
 
 
