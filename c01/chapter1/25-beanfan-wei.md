@@ -118,9 +118,22 @@ servlet2.3
 
 request Scope 作用域注入另一个,Bean测必须注入AOP代理来替换作用域bean
 
-代理类的选择：
+##### 代理类的选择
 
+###### 创建代理类：将子&lt;aop:scoped-proxy/&gt;元素插入到作用域bean定义中。
 
+场景：1. bean类的定义范围的在request,session,global session和自定义范围水平要求&lt;aop:scoped-proxy/&gt;元素。
+
+           2. 当将一个生命周期短的注入一个生命周期长的bean时
+
+```
+<bean id="userPreferences" class="com.foo.UserPreferences" scope="session">
+    <aop:scoped-proxy/>
+</bean>
+<bean id="userManager" class="com.foo.UserManager">
+    <property name="userPreferences" ref="userPreferences"/>
+</bean>
+```
 
 
 
