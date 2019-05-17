@@ -7,5 +7,5 @@
   * [dasda](c01/chapter1/dasda.md)
   * [2.4 依赖](c01/chapter1/24fang-fa-zhu-ru.md)
   * [2.5 Bean范围](c01/chapter1/25-beanfan-wei.md)
-  * 2.6 Bean定义继承
+  * [2.6 Bean定义继承](c01/chapter1/26-beanding-yi-ji-cheng.md)
 
