@@ -330,5 +330,17 @@ public interface Lifecycle {
 }
 ```
 
+当ApplicationContext本身启动和停止时，它会将这些调用级联到该上下文中定义的所有生命周期实现。它通过委托给 LifecycleProcessor：
+
+```
+public interface LifecycleProcessor extends Lifecycle {
+
+    void onRefresh();
+
+    void onClose();
+
+}
+```
+
 
 
