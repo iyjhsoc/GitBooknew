@@ -366,5 +366,12 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 }
 ```
 
+```
+<bean id="lifecycleProcessor" class="org.springframework.context.support.DefaultLifecycleProcessor">
+    <!-- timeout value in milliseconds -->
+    <property name="timeoutPerShutdownPhase" value="10000"/>
+</bean>
+```
+
 
 
