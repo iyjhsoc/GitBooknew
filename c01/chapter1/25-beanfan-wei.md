@@ -251,6 +251,22 @@ public class ExampleBean {
 void destroy() throws Exception;
 ```
 
+DisposableBean接口实现：
+
+```
+<bean id="exampleInitBean" class="examples.ExampleBean" destroy-method="cleanup"/>
+```
+
+```
+public class ExampleBean {
+
+    public void cleanup() {
+        // do some destruction work (like releasing pooled connections)
+    }
+
+}
+```
+
 使用destroy-method实现：
 
 ```
