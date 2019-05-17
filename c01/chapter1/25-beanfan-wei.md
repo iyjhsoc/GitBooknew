@@ -283,5 +283,36 @@ public class ExampleBean {
 }
 ```
 
+#### 默认初始化和销毁​​方法
+
+```
+public class DefaultBlogService implements BlogService {
+
+    private BlogDao blogDao;
+
+    public void setBlogDao(BlogDao blogDao) {
+        this.blogDao = blogDao;
+    }
+
+    // this is (unsurprisingly) the initialization callback method
+    public void init() {
+        if (this.blogDao == null) {
+            throw new IllegalStateException("The [blogDao] property must be set.");
+        }
+    }
+
+}
+```
+
+```
+<beans default-init-method="init">
+
+    <bean id="blogService" class="com.foo.DefaultBlogService">
+        <property name="blogDao" ref="blogDao" />
+    </bean>
+
+</beans>
+```
+
 
 
