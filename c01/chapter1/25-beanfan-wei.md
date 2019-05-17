@@ -16,6 +16,8 @@
 
 效果：当您定义bean并将其作为单一作用域时，Spring IoC容器只创建该bean定义的对象的一个实例。此单个实例存储在此类单例bean的缓存中，并且该命名Bean的所有后续请求和引用都将返回缓存对象。
 
+范围：它将在每个容器中实例化一次
+
 **Figure 2.5.1**
 
 ![](/assets/2_5_1.PNG)
@@ -111,6 +113,14 @@ servlet2.3
 ```
 <bean id="userPreferences" class="com.foo.UserPreferences" scope="globalSession"/>
 ```
+
+#### 依赖关系Scoped beans
+
+request Scope 作用域注入另一个,Bean测必须注入AOP代理来替换作用域bean
+
+代理类的选择：
+
+
 
 
 
