@@ -88,12 +88,20 @@ servlet2.3
 </web-app>
 ```
 
-## Request Scope
+#### Request Scope
 
 范围：请求开始到请求结束
 
 ```
 <bean id="loginAction" class="com.foo.LoginAction" scope="request"/>
+```
+
+#### session Scope
+
+范围：Spring容器UserPreferences通过在userPreferences单个HTTP的生存期内使用bean定义来创建bean 的新实例Session。
+
+```
+<bean id="userPreferences" class="com.foo.UserPreferences" scope="session"/>
 ```
 
 
