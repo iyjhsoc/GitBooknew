@@ -122,9 +122,11 @@ request Scope 作用域注入另一个,Bean测必须注入AOP代理来替换作�
 
 ###### 创建代理类：将子&lt;aop:scoped-proxy/&gt;元素插入到作用域bean定义中。
 
+                       创建的代理类是基于CGLIB的类代理
+
 场景：1. bean类的定义范围的在request,session,global session和自定义范围水平要求&lt;aop:scoped-proxy/&gt;元素。
 
-           2. 当将一个生命周期短的注入一个生命周期长的bean时
+            2.当将一个生命周期短的注入一个生命周期长的bean时
 
 ```
 <bean id="userPreferences" class="com.foo.UserPreferences" scope="session">
@@ -133,6 +135,32 @@ request Scope 作用域注入另一个,Bean测必须注入AOP代理来替换作�
 <bean id="userManager" class="com.foo.UserManager">
     <property name="userPreferences" ref="userPreferences"/>
 </bean>
+```
+
+4.5.5 自定义范围
+
+从基础范围返回对象：会话范围实现返回会话范围的bean。如果它不存在，则该方法在将其绑定到会话以供将来参考之后返回该bean的新实例
+
+```
+Object get(String name, ObjectFactory objectFactory)
+```
+
+从基础范围中删除对象：会话范围实现从基础会话中删除会话范围的bean。
+
+```
+Object remove(String name)
+```
+
+注册范围应在销毁时或在范围中指定的对象被销毁时应执行的回调：有关销毁回调的更多信息，请参阅Javadoc或Spring作用域实现。
+
+```
+void registerDestructionCallback(String name, Runnable destructionCallback)
+```
+
+获取基础范围的对话标识符：。每个范围的标识符都不同。对于会话范围的实现，该标识符可以是会话标识符。
+
+```
+String getConversationId()
 ```
 
 
