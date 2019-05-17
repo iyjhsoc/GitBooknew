@@ -37,7 +37,54 @@
 
 **Figure2.5.2**
 
-## ![](/assets/2_5_2.PNG)2.5.3具有原型bean依赖关系的单例bean
+### 2.5.3具有原型bean依赖关系的单例bean
+
+### 2.5.4 Web范围的Bean:request, session, and global session范围
+
+只有使用Web感知的Spring Application 才可以感知到上面三个范围
+
+访问方式：
+
+       Spring MVC 中访问：处理请求的SpringDispatcherServvlet和DispatcherPortlet处理
+
+      servlet2.4+Web容器：
+
+       对于servlet 3.0+，这可以通过WebApplicationInitializer接口以编程方式完成。或者，对于较旧的容器，将以下声明添加到Web应用程序web.xml文件中：
+
+```XML
+<web-app>
+    ...
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+    ...
+</web-app>
+```
+
+    servlet2.3
+
+   用提供的javax.servlet.Filter 实现
+
+```
+<web-app>
+    ...
+    <filter>
+        <filter-name>requestContextFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>requestContextFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    ...
+</web-app>
+```
+
+
+
+## 
 
 
 
