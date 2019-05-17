@@ -205,21 +205,23 @@ String getConversationId()
 
 #### 2.5.6.1 生命周期回调
 
- 方法：     
+方法：
 
-  1、 JSR-250注解@PostConstruct和@PreDestroy 
+1、 JSR-250注解@PostConstruct和@PreDestroy
 
-  2、在内部，Spring Framework使用BeanPostProcessor实现来处理它可以找到的任何回调接口并调用适当的方法。或自己实现方法。
+2、在内部，Spring Framework使用BeanPostProcessor实现来处理它可以找到的任何回调接口并调用适当的方法。或自己实现方法。
 
-  3、除了初始化和销毁​​回调之外，Spring管理的对象还可以实现Lifecycle接口，以便这些对象可以参与由容器自身生命周期驱动的启动和关闭过程。
+3、除了初始化和销毁​​回调之外，Spring管理的对象还可以实现Lifecycle接口，以便这些对象可以参与由容器自身生命周期驱动的启动和关闭过程。
 
 4、不会产生不必要的耦合 使用init-method和destroy-method对象定义元数据。
 
 ##### 第四种方法的实现：
 
-   初始化回调：
+初始化回调：
 
-           该org.springframework.beans.factory.InitializingBean接口允许后对bean的所有必要属性容器设置一个bean来执行初始化的工作。的InitializingBean接口规定了一个方法：
+```
+       该org.springframework.beans.factory.InitializingBean接口允许后对bean的所有必要属性容器设置一个bean来执行初始化的工作。的InitializingBean接口规定了一个方法：
+```
 
 ```
 void afterPropertiesSet() throws Exception;
@@ -250,6 +252,10 @@ void destroy() throws Exception;
 ```
 
 使用destroy-method实现：
+
+```
+<bean id="exampleInitBean" class="examples.ExampleBean" destroy-method="cleanup"/>
+```
 
 ```
 public class ExampleBean {
