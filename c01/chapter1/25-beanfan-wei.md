@@ -88,7 +88,13 @@ servlet2.3
 </web-app>
 ```
 
-## 
+## Request Scope
+
+范围：请求开始到请求结束
+
+```
+<bean id="loginAction" class="com.foo.LoginAction" scope="request"/>
+```
 
 
 
