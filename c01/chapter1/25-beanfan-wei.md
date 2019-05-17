@@ -104,5 +104,13 @@ servlet2.3
 <bean id="userPreferences" class="com.foo.UserPreferences" scope="session"/>
 ```
 
+#### Global session Scope
+
+范围：global session 范围是类似于标准HTTP`Session`范围，并且只适用于基于portlet的web应用程序的上下文。
+
+```
+<bean id="userPreferences" class="com.foo.UserPreferences" scope="globalSession"/>
+```
+
 
 
