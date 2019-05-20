@@ -1,6 +1,6 @@
 ### 4.7.1 使用BeanPostProcessor自定义bean
 
-    作用：如果要在Spring容器完成初始化配置和初始化bean之后实现某些自定义逻辑，测可以写入一个或者多个BeanPostProcessor方法
+作用：如果要在Spring容器完成初始化配置和初始化bean之后实现某些自定义逻辑，测可以写入一个或者多个BeanPostProcessor方法
 
 使用：通过order控制这些BeanPostProcessor执行的顺序
 
