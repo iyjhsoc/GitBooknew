@@ -6,3 +6,7 @@
 
 因为AOP自动代理是作为一个BeanPostProcessor自身实现的，所以BeanPostProcessors它们直接引用的bean 都没有资格进行自动代理
 
+注册：BeanPostProcessor注册是通过 ApplicationContext自动检测。
+
+          但也可以注册它们编程对一个ConfigurableBeanFactory使用 addBeanPostProcessor方法。
+
