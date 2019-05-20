@@ -1,5 +1,7 @@
 ### 4.7.1 使用BeanPostProcessor自定义bean
 
+### BeanPostProcessor实现的方法
+
 ```
 postProcessBeforeInitialization()
 该方法在注入的Bean的init方法执行前执行
