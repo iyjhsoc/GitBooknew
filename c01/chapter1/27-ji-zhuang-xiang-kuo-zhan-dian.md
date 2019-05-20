@@ -8,7 +8,7 @@
 
 注册：1. BeanPostProcessor注册是通过 ApplicationContext自动检测。
 
-      2. 但也可以注册它们编程对一个ConfigurableBeanFactory使用 addBeanPostProcessor方法。
+1. 但也可以注册它们编程对一个ConfigurableBeanFactory使用 addBeanPostProcessor方法。
 
 第二个注册方法 适合在注册前的一些判断
 
@@ -17,57 +17,50 @@
 BeanPostProcessor的实现：
 
 ```
-package
-```
+package scripting;
 
-```
- scripting;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.BeansException;
 
+public class InstantiationTracingBeanPostProcessor implements BeanPostProcessor {
 
-import
- org.springframework.beans.factory.config.BeanPostProcessor;
-
-import
- org.springframework.beans.BeansException;
-
-
-public
-class
- InstantiationTracingBeanPostProcessor 
-implements
- BeanPostProcessor {
-
-    
-// simply return the instantiated bean as-is
-public
- Object postProcessBeforeInitialization(Object bean,
-            String beanName) 
-throws
- BeansException {
-        
-return
- bean; 
-// we could potentially return any object reference here...
-
+    // simply return the instantiated bean as-is
+    public Object postProcessBeforeInitialization(Object bean,
+            String beanName) throws BeansException {
+        return bean; // we could potentially return any object reference here...
     }
 
-    
-public
- Object postProcessAfterInitialization(Object bean,
-            String beanName) 
-throws
- BeansException {
-        System.out.println(
-"Bean 
-" + beanName + "
- created : 
-" + bean.toString());
-
-return
- bean;
+    public Object postProcessAfterInitialization(Object bean,
+            String beanName) throws BeansException {
+        System.out.println("Bean " + beanName + " created : " + bean.toString());
+        return bean;
     }
 
 }
+```
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/lang
+        http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+    <lang:groovy id="messenger"
+            script-source="classpath:org/springframework/scripting/groovy/Messenger.groovy">
+        <lang:property name="message" value="Fiona Apple Is Just So Dreamy."/>
+    </lang:groovy>
+
+    <!--
+    when the above bean (messenger) is instantiated, this custom
+    BeanPostProcessor implementation will output the fact to the system console
+    -->
+    <bean class="scripting.InstantiationTracingBeanPostProcessor"/>
+
+</beans>
 ```
 
 
