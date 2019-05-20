@@ -6,7 +6,69 @@
 
 因为AOP自动代理是作为一个BeanPostProcessor自身实现的，所以BeanPostProcessors它们直接引用的bean 都没有资格进行自动代理
 
-注册：BeanPostProcessor注册是通过 ApplicationContext自动检测。
+注册：1. BeanPostProcessor注册是通过 ApplicationContext自动检测。
 
-          但也可以注册它们编程对一个ConfigurableBeanFactory使用 addBeanPostProcessor方法。
+      2. 但也可以注册它们编程对一个ConfigurableBeanFactory使用 addBeanPostProcessor方法。
+
+第二个注册方法 适合在注册前的一些判断
+
+第一种方法：不管有没有设置排序，以编程方式注册的内容始终在通过自动检测注册之前处理。
+
+BeanPostProcessor的实现：
+
+```
+package
+```
+
+```
+ scripting;
+
+
+import
+ org.springframework.beans.factory.config.BeanPostProcessor;
+
+import
+ org.springframework.beans.BeansException;
+
+
+public
+class
+ InstantiationTracingBeanPostProcessor 
+implements
+ BeanPostProcessor {
+
+    
+// simply return the instantiated bean as-is
+public
+ Object postProcessBeforeInitialization(Object bean,
+            String beanName) 
+throws
+ BeansException {
+        
+return
+ bean; 
+// we could potentially return any object reference here...
+
+    }
+
+    
+public
+ Object postProcessAfterInitialization(Object bean,
+            String beanName) 
+throws
+ BeansException {
+        System.out.println(
+"Bean 
+" + beanName + "
+ created : 
+" + bean.toString());
+
+return
+ bean;
+    }
+
+}
+```
+
+
 
