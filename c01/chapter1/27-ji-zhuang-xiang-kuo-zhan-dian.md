@@ -1,5 +1,13 @@
 ### 4.7.1 使用BeanPostProcessor自定义bean
 
+```
+postProcessBeforeInitialization()
+该方法在注入的Bean的init方法执行前执行
+
+postProcessAfterInitialization()
+该方法在注入的Bean的init方法执行后执行
+```
+
 作用：如果要在Spring容器完成初始化配置和初始化bean之后实现某些自定义逻辑，测可以写入一个或者多个BeanPostProcessor方法
 
 使用：通过order控制这些BeanPostProcessor执行的顺序
@@ -83,5 +91,7 @@ public final class Boot {
 }
 ```
 
+### 4.7.2使用BeanFactoryPostProcessor自定义配置元数据
 
+BeanFactoryPostProcessor和BeanPostProcessor类似
 
