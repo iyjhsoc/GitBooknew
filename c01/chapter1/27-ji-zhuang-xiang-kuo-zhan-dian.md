@@ -63,5 +63,25 @@ public class InstantiationTracingBeanPostProcessor implements BeanPostProcessor 
 </beans>
 ```
 
+前面配置还定义了一个由Groovy脚本支持的bean。Spring的动态语言支持在28章中有详解
+
+实现：
+
+```
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scripting.Messenger;
+
+public final class Boot {
+
+    public static void main(final String[] args) throws Exception {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("scripting/beans.xml");
+        Messenger messenger = (Messenger) ctx.getBean("messenger");
+        System.out.println(messenger);
+    }
+
+}
+```
+
 
 
